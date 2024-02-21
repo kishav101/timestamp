@@ -1,8 +1,11 @@
-import React, { FC } from 'react'
-import { NavLink } from "react-router-dom";
+import React, { FC, useEffect } from 'react'
+import { Link } from "react-router-dom";
+import useStyles from './NavBarStyles';
 interface NavBarProps{
 
 }
+
+
 
 const NavBar: FC<NavBarProps> = props => {
 
@@ -10,18 +13,25 @@ const NavBar: FC<NavBarProps> = props => {
 
     } = props;
 
+    const {classes} = useStyles();
+
+    useEffect(() => {
+        const v = process.env.REACT_APP_CLIENT_PRIMARY_COLOUR
+        console.log(v)
+    },[])
+
     return(
         <>
-          <nav>
+          <nav className={classes.root}>
             <div className='clientIcon'>
                 <img src={process.env.CLIENT_IMAGE_ICON}></img>
             </div>
             <div className='nav-links'>
-                <ul>
-                    <li><a href='/'>Home</a></li>
-                    <li><a href='/'>Contact</a></li>
-                    <li><a href='/'>FAQs</a></li>
-                    <li><a href='/'>Help</a></li>
+                <ul >
+                    <Link to={'/'}>Home</Link>
+                    <Link to={'/About'}>About</Link>
+                    <Link to={'/About'}>FAQs</Link>
+                    <Link to={'/About'}>Help</Link>
                 </ul>
             </div>
           </nav>

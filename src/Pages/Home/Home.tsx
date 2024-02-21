@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import useStyles from "./ContainerStyles";
+import NavBarContainer from "../../Components/Navbar";
 
 
 interface HomeProps{
@@ -15,7 +16,11 @@ const {classes} = useStyles();
 
 return(
     <>
-    <p className={classes.root}>Kishav</p>
+      <NavBarContainer />
+    <div className={classes.root}>
+      <h2>put my content here
+      </h2>
+    </div>
     </>
 )
 }

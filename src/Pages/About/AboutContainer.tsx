@@ -12,6 +12,7 @@ const AboutContainer: FC<AboutContinerProps> = props => {
 
     return(
         <>
+        <h1>kisggggg</h1>
             <About />
         </>
     )

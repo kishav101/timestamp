@@ -11,7 +11,7 @@ const About: FC<AboutProps> = props => {
 
     return(
         <>
-        
+        <h1>ffffkkkkijjjnjnjnjnjnjn</h1>
         </>
     )
 }

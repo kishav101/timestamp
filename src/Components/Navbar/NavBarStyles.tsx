@@ -1,8 +1,12 @@
 import { tss } from "tss-react/mui";
 
+
 const useStyles = tss.create(({theme}) => ({
     root:{
-        backgroundColor: "#2b2b2b"
+        backgroundColor: process.env.REACT_APP_CLIENT_PRIMARY_COLOUR
+    },
+    navList:{
+
     }
 }))
 
