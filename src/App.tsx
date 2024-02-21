@@ -17,7 +17,15 @@ const App = () => {
     },
      {
       path: "/Home",
-      element: <h2>jhhh</h2>,
+      element: <HomeContainer/>,
+    },
+    {
+      path: "/FQAs",
+      element: <h2>To Build</h2>,
+    },
+    {
+      path: "/Help",
+      element: <h2>To Build</h2>,
     }
   ];
 

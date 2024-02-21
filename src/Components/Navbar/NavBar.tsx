@@ -1,10 +1,9 @@
 import React, { FC, useEffect } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import useStyles from './NavBarStyles';
 interface NavBarProps{
 
 }
-
 
 
 const NavBar: FC<NavBarProps> = props => {
@@ -15,24 +14,23 @@ const NavBar: FC<NavBarProps> = props => {
 
     const {classes} = useStyles();
 
-    useEffect(() => {
-        const v = process.env.REACT_APP_CLIENT_PRIMARY_COLOUR
-        console.log(v)
-    },[])
+    const homeMatch = useMatch('/'|| '/Home');
+    const aboutMatch = useMatch('/About');
+    const fqaMatch = useMatch('/FQAs');
+    const helpMatch = useMatch('/Help');
+
 
     return(
         <>
           <nav className={classes.root}>
-            <div className='clientIcon'>
-                <img src={process.env.CLIENT_IMAGE_ICON}></img>
+            <div >
+                <img className={classes.imageIcon} src={process.env.REACT_APP_CLIENT_IMAGE_ICON}></img>
             </div>
-            <div className='nav-links'>
-                <ul >
-                    <Link to={'/'}>Home</Link>
-                    <Link to={'/About'}>About</Link>
-                    <Link to={'/About'}>FAQs</Link>
-                    <Link to={'/About'}>Help</Link>
-                </ul>
+            <div className={classes.navList}>
+                <Link  className={ homeMatch ? classes.activeLink : classes.navLinks}  to={'/'}>Home</Link>
+                <Link className={ aboutMatch ? classes.activeLink : classes.navLinks}  to={'/About'}>About</Link>
+                <Link className={ fqaMatch ? classes.activeLink : classes.navLinks}  to={'/FQAs'}>FAQs</Link>
+                <Link className={ helpMatch ? classes.activeLink : classes.navLinks}  to={'/Help'}>Help</Link>
             </div>
           </nav>
         </>
