@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import NavBar from './NavBar';
+import {NavBar} from './NavBar';
 
 interface NavBarContainerProps{
 
@@ -10,7 +10,7 @@ const NavBarContainer: FC<NavBarContainerProps> = props => {
 
     } = props;
 
-    
+
 
     return(
        <NavBar />

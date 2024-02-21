@@ -1,5 +1,5 @@
 import { tss } from "tss-react/mui";
-import 'dotenv/config'
+
 
 const mainStyles = tss.create(({theme}) => ({
     root:{

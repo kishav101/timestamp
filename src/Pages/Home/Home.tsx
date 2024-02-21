@@ -20,4 +20,4 @@ return(
 )
 }
 
-export default Home;
+export { Home };

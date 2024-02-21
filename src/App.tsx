@@ -1,8 +1,7 @@
-import React from 'react';
 import './App.css';
 import NavBarContainer from './Components/Navbar';
-import Home from './Pages/Home/Home';
 import mainStyles from './GloablStyles';
+import { HomeContainer } from './Pages/Home/Container';
 
 function App() {
 
@@ -12,7 +11,7 @@ function App() {
     <>
       <div className={classes.root}>
         <NavBarContainer />
-        <Home />
+        <HomeContainer />
       </div>
     </>
   );
