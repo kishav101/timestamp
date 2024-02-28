@@ -29,6 +29,7 @@ return(
     <>
      <Drawer
      toggleNavBar={toggleNavBar}
+     isNavOpen={isNavOpen}
      />
     </>
 )

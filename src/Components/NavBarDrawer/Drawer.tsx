@@ -1,38 +1,60 @@
 import React, { FC } from "react";
 import DrawerStyles from "./ContainerStyles";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowCircleLeft, faArrowLeft, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faHeadset, faHome, faInbox, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+
 
 interface IDrawerProps{
     toggleNavBar: () => void;
+    isNavOpen: boolean;
 }
 
 const Drawer: FC<IDrawerProps> = props => {
 
     const {
-        toggleNavBar
+        toggleNavBar,
+        isNavOpen
     } = props;
 
     const {classes} = DrawerStyles();
 
+    const homeMatch = useMatch('/'|| '/Home');
+    const aboutMatch = useMatch('/About');
+    const fqaMatch = useMatch('/FQAs');
+    const helpMatch = useMatch('/Help');
+    
+
     return(
         <>
-        <div className={classes.root}>
-            <div className={classes.headerStyles}>
+        <div className={isNavOpen ? classes.showDrawer : classes.closeDrawer}>
+          {
+            isNavOpen && <>
+              <div className={classes.headerStyles}>
                 <div className={classes.imageContainenr}>
                     <img className={classes.imageIcon} src={process.env.REACT_APP_CLIENT_IMAGE_ICON}></img>
                 </div>
-                <div className={classes.exitImageIcon}>
-                  <FontAwesomeIcon icon={faArrowLeft} size='xl'color="white" onClick={toggleNavBar} />
+                <div onClick={toggleNavBar} className={classes.exitImageIcon}>
+                  <FontAwesomeIcon icon={faArrowLeft} size='xl'color="white"  />
                 </div>
             </div>
-            <div>
-                <Link className={classes.navLinks}  to={'/'}>Home</Link>
-                <Link className={classes.navLinks}  to={'/About'}>About our Servies</Link>
-                <Link className={classes.navLinks}  to={'/FQAs'}>Frequently Asked Questions</Link>
-                <Link className={classes.navLinks}  to={'/Help'}>Interactive Help</Link>
+            <div className={classes.navContainer}>
+                <Link className={ homeMatch ? classes.navActiveLinks : classes.navLinks}  to={'/'}>
+                   <FontAwesomeIcon icon={faHome} size='sm'color={homeMatch ? "black" : "white"} style={{marginTop: 5, paddingRight: 10 }}/>
+                  Home
+                </Link>
+                <Link className={ aboutMatch ? classes.navActiveLinks : classes.navLinks}  to={'/About'}>
+                <FontAwesomeIcon icon={faInbox} size='sm'color={aboutMatch ? "black" : "white"}  style={{marginTop: 5, paddingRight: 10 }}/>
+                  About our Servies</Link>
+                <Link className={ fqaMatch ? classes.navActiveLinks : classes.navLinks}  to={'/FQAs'}>
+                <FontAwesomeIcon icon={faQuestionCircle} size='sm'color={fqaMatch ? "black" : "white"}  style={{marginTop: 5, paddingRight: 10 }}/>
+                  Frequently Asked Questions</Link>
+                <Link className={ helpMatch ? classes.navActiveLinks : classes.navLinks} to={'/Help'}>
+                <FontAwesomeIcon icon={faHeadset} size='sm'color={fqaMatch ? "black" : "white"}  style={{marginTop: 5, paddingRight: 10 }}/>
+                  Interactive Help</Link>
             </div>
+            </>
+          }
         </div>
         </>
     )

@@ -16,14 +16,10 @@ const{
 const {classes} = useStyles(); 
 return(
     <>
-      {
-          isDrawerOpen ?
-          <NavDrawerConatiner/>
-          :
-          <NavBarContainer />
-      }
-      
-      
+       <NavBarContainer />
+     <NavDrawerConatiner/>
+  
+    
     <div className={classes.root}>
     
     </div>

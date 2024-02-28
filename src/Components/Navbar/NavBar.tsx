@@ -42,7 +42,7 @@ const NavBar: FC<NavBarProps> = props => {
         <>
           <nav className={classes.root}>
             <div className={classes.hamburger} >
-            <FontAwesomeIcon icon={faBars} size='xl' onClick={toggleDrawer} />
+            <FontAwesomeIcon icon={faBars} size='2xl' onClick={toggleDrawer} />
             </div>
             <div className={classes.imageContainer} >
                 <img className={classes.imageIcon} src={process.env.REACT_APP_CLIENT_IMAGE_ICON}></img>
