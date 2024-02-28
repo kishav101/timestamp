@@ -1,6 +1,8 @@
 import {Home} from './Home'
 import useStyles from "./ContainerStyles";
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../Stores/Stores';
 
 
 interface HomeContainerProps{
@@ -14,10 +16,12 @@ const HomeContainer: FC<HomeContainerProps> = props => {
     } = props;
     
     const {classes} = useStyles(); 
+    const isDrawerOpen = useSelector((state: RootState) => state.drawer.isDrawerOpen);
     
     return(
         <>
-        <Home />
+        <Home
+        isDrawerOpen={isDrawerOpen} />
         </>
     )
     }

@@ -1,25 +1,31 @@
 import React, { FC } from "react";
 import useStyles from "./ContainerStyles";
 import NavBarContainer from "../../Components/Navbar";
+import NavDrawerConatiner from "../../Components/NavBarDrawer";
 
 
 interface HomeProps{
-
+  isDrawerOpen: boolean
 }
 
 const Home: FC<HomeProps> = props => {
 const{
-
+  isDrawerOpen
 } = props;
 
 const {classes} = useStyles(); 
-
 return(
     <>
-      <NavBarContainer />
+      {
+          isDrawerOpen ?
+          <NavDrawerConatiner/>
+          :
+          <NavBarContainer />
+      }
+      
+      
     <div className={classes.root}>
-      <h2>put my content here
-      </h2>
+    
     </div>
     </>
 )
