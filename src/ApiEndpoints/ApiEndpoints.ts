@@ -1,0 +1,10 @@
+const DEV_ENVIRONMENT = "https://localhost:7125";
+const PRODUCTION_ENVIRONMENT = ""
+const CURRENT_ENVIRONMENT = "DEV"
+
+
+export const API = {
+    account: {
+        loginApi: CURRENT_ENVIRONMENT === "DEV" ? DEV_ENVIRONMENT+"/retrieveLogin" : PRODUCTION_ENVIRONMENT+"/retrieveLogin"
+    }
+}

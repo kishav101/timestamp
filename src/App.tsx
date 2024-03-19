@@ -1,9 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
-import NavBarContainer from './Components/Navbar';
-import mainStyles from './GloablStyles';
 import { HomeContainer } from './Pages/Home/Container';
 import AboutContainer from './Pages/About';
+import LoginContainer from './Pages/Login';
 
 const App = () => {
   const routes = [
@@ -26,6 +25,10 @@ const App = () => {
     {
       path: "/Help",
       element: <h2>To Build</h2>,
+    },
+    {
+      path: "/Login",
+      element: <LoginContainer />,
     }
   ];
 
