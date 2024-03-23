@@ -1,9 +1,9 @@
 import React, { FC, useEffect } from 'react'
-import { Link, useMatch } from "react-router-dom";
+import { Link, useMatch, useNavigate } from "react-router-dom";
 import useStyles from './NavBarStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import NavDrawerConatiner from '../NavBarDrawer';
+import { Button } from '@mui/material';
 
 
 interface NavBarProps {
@@ -24,7 +24,7 @@ const NavBar: FC<NavBarProps> = props => {
     } = props;
 
     const {classes} = useStyles();
-
+    const navigate = useNavigate();
     const homeMatch = useMatch('/'|| '/Home');
     const aboutMatch = useMatch('/About');
     const fqaMatch = useMatch('/FQAs');
@@ -36,6 +36,10 @@ const NavBar: FC<NavBarProps> = props => {
       } else {
         handleCloseNavDrawer();
       }
+    }
+
+    const handleOnLoginNavigate = () => {
+      navigate("/Login");
     }
 
     return(
@@ -54,7 +58,7 @@ const NavBar: FC<NavBarProps> = props => {
                 <Link className={ helpMatch ? classes.activeLink : classes.navLinks}  to={'/Help'}>Help</Link>
             </div>
             <div className={classes.logoutLinkDiv}>
-               <Link  className={classes.loginLink}  to={'/Logout'} title={isLoggedin ? "Logout": "Login"}>{isLoggedin ? "Logout": "Login"}</Link>
+               <Button onClick={handleOnLoginNavigate} className={classes.loginLink}  title={isLoggedin ? "Logout": "Login"}>{isLoggedin ? "Logout": "Login"}</Button>
             </div>
           </nav>
          

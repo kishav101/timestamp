@@ -1,6 +1,7 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Login from "./Login";
 import loginStyles from "../Login/LoginStyles";
+import useLoginHook from "../../Hooks/NetworkHooks/useLoginHook";
 
 interface LoginProps{
 
@@ -12,13 +13,23 @@ const initialLoginDetails = {
 }
 
 const LoginContainer: FC<LoginProps> = props => {
+   
+    const [isForgotPasswordFlip, setIsForgotPasswordFlip] = useState<boolean>(false);
+    const[loginDetails, setLoginDetails] = useState(initialLoginDetails);
 
-    const {classes} = loginStyles();
-    const[loginDetails, setLoginDetails] = useState(initialLoginDetails)
+    const{data, mutate: loginMutate, status, isError } = useLoginHook(loginDetails);
+
+    const {classes} = loginStyles({ 
+        isForgotPasswordFlip: isForgotPasswordFlip
+    });
 
     const handleLogin = () => {
-
+        loginMutate(loginDetails);
     }
+
+    useEffect(() => {
+        console.log(loginDetails)
+    }, [loginDetails])
 
     return(
         <>
@@ -26,6 +37,9 @@ const LoginContainer: FC<LoginProps> = props => {
                 loginDetails={loginDetails}
                 setLoginDetails={setLoginDetails}
                 handleLoginMethod={handleLogin}
+                styles={classes}
+                setIsForgotPasswordFlip={setIsForgotPasswordFlip}
+                isForgotPasswordFlip={isForgotPasswordFlip}
             />
         </>
     )

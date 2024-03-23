@@ -16,10 +16,6 @@ const{
 const {classes} = useStyles(); 
 return(
     <>
-       <NavBarContainer />
-     <NavDrawerConatiner/>
-  
-    
     <div className={classes.root}>
     
     </div>

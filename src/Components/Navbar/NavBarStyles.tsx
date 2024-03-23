@@ -52,28 +52,26 @@ const useStyles = tss.create(({theme}) => ({
         padding: 15,
     },
     imageIcon:{
-       width: 80,
-       height: 80,
+       width: 40,
+       height: 40,
        borderRadius: "50%",
        "@media (max-width: 768px)": {
 
       },
     },
     loginLink:{
-        borderRadius: 15,
+        borderRadius: 10,
         height: '100%',
-        fontSize: 18,
+        fontSize: 14,
         fontWeight: '700',
         textDecoration: 'none',
-        padding: 15,
-        transition: '0s ease',
+        padding: 8,
+        transition: '0.3s ease',
         color: "#fff",
         backgroundColor: process.env.REACT_APP_CLIENT_SECONDARY_COLOUR,
         "&:Hover": {
-            backgroundColor: process.env.REACT_APP_CLIENT_SECONDARY_COLOUR,
-            color: "#fff",
-            fontSize: 20,
-            padding: 20
+            fontSize: 16,
+            padding: 10
         },
         "@media (max-width: 768px)": {
             visibility: "hidden",

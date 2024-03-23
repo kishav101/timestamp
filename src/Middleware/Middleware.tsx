@@ -27,19 +27,14 @@ const _get = async (getParams: GetParamType ) => {
 const _post = async (postParams: PostParamType) => {
     const urlEndpoint = postParams?.url;
     const body = postParams?.body;
-    console.log(postParams)
+    const headers = {'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin':'*',
+                    'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'}
     return fetch(urlEndpoint, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-            'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *client
-        body: body // body data type must match "Content-Type" header
+        method: 'POST',
+        mode: 'cors', 
+        headers: headers,
+        body: JSON.stringify(body) 
         })
         .then(response => response.json());
 }

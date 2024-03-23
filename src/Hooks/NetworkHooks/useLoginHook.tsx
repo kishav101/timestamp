@@ -1,26 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
-import  MiddleWare  from "../../Middleware/Middleware";
-import { PostParamType } from "../../Middleware/types";
-import { API } from "../../ApiEndpoints/ApiEndpoints";
+import { useMutation } from 'react-query';
+import { PostParamType } from '../../Middleware/types';
+import { useEffect } from 'react';
+import { API } from '../../ApiEndpoints/ApiEndpoints';
+import Middleware from '../../Middleware/Middleware'; 
 
-const requestFunction = async (props: any) => {
+const requestFunction = async (props: any): Promise<any> => {
+  
     const requestObject: PostParamType = {
         url: API.account.loginApi,
-        body: props.body
+        body: props
     }
-    return await MiddleWare._post(requestObject);
+    const response = await Middleware._post(requestObject);
+    return response;
 }
 
 const useLoginHook = (props: any) => {
-    const { data, ...rest } = useQuery({
-        queryKey: ['login'],
-        queryFn: () => requestFunction(props),
-    })
-    console.log("data=>", data, rest?.error)
-    return {
-        data: data,
-        rest: rest
-    }
+    const { mutate, data, isError, status } = useMutation(requestFunction);
+    return { data, isError, status, mutate }; 
 }
 
 export default useLoginHook;

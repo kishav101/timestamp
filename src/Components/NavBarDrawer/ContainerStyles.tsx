@@ -21,7 +21,9 @@
           "@media (min-width: 900px)": {
             visibility: "hidden",
           },
-          boxShadow: '0 0 15px #2b2b2b'
+          boxShadow: '0 0 15px #2b2b2b',
+          position: 'absolute',
+          left: 0
         },
         closeDrawer: {
           backgroundColor: process.env.REACT_APP_CLIENT_PRIMARY_COLOUR,
@@ -31,7 +33,9 @@
           flexDirection: 'column',
           padding: 20,
           transition: 'width 0.3s ease',
-          boxShadow: '0 0 15px #2b2b2b'
+          boxShadow: '0 0 15px #2b2b2b',
+          position: 'absolute',
+          left: 0
         },
         headerStyles:{
           display: 'flex',
