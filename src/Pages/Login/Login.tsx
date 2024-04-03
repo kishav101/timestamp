@@ -64,8 +64,6 @@ const Login: FC<LoginProps> = props => {
               </div>
           </div>
         </div>
-       
-     
       </>
     )
 }

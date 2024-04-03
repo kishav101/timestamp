@@ -5,6 +5,8 @@ const CURRENT_ENVIRONMENT = "DEV"
 
 export const API = {
     account: {
-        loginApi: CURRENT_ENVIRONMENT === "DEV" ? DEV_ENVIRONMENT+"/retrieveLogin" : PRODUCTION_ENVIRONMENT+"/retrieveLogin"
+        loginApi: CURRENT_ENVIRONMENT === "DEV" ? DEV_ENVIRONMENT+"/retrieveLogin" : PRODUCTION_ENVIRONMENT+"/retrieveLogin",
+        forgotPasswordApi: CURRENT_ENVIRONMENT === "DEV" ? DEV_ENVIRONMENT+"/ForgotPassword" : PRODUCTION_ENVIRONMENT+"/ForgotPassword",
+        registerUserApi: CURRENT_ENVIRONMENT === "DEV" ? DEV_ENVIRONMENT+"/AddClientUser" : PRODUCTION_ENVIRONMENT+"/AddClientUser",
     }
 }

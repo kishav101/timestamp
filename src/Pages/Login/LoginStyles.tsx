@@ -11,7 +11,7 @@ const loginStyles = tss.withParams<{ isForgotPasswordFlip: boolean; }>().create(
         width: '50%',
         perspective: 800,
         "@media (max-width: 768px)": {
-            width: '50%'
+            width: '70%'
            },
     },
     card: {
@@ -25,7 +25,7 @@ const loginStyles = tss.withParams<{ isForgotPasswordFlip: boolean; }>().create(
         textAlign: 'center',
         transform: isForgotPasswordFlip ? 'rotateY(180deg)' : 'rotateY(0deg)' ,
         "@media (max-width: 768px)": {
-            width: '100%'
+            width: '70%'
            },
      
     },
@@ -56,7 +56,6 @@ const loginStyles = tss.withParams<{ isForgotPasswordFlip: boolean; }>().create(
         borderStyle: 'solid',
         borderRadius: 8,
         padding: "3%",
-      
         boxShadow: `0 1px 12px ${process.env.REACT_APP_CLIENT_PRIMARY_COLOUR}`
     },
     cardImageContainer: {

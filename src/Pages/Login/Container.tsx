@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import Login from "./Login";
 import loginStyles from "../Login/LoginStyles";
 import useLoginHook from "../../Hooks/NetworkHooks/useLoginHook";
+import RegisterContainer from "../../Components/RegisterComponent/RegisterContainer";
 
 interface LoginProps{
 
@@ -33,6 +34,7 @@ const LoginContainer: FC<LoginProps> = props => {
 
     return(
         <>
+        <RegisterContainer />
             <Login
                 loginDetails={loginDetails}
                 setLoginDetails={setLoginDetails}
