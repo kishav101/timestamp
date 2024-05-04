@@ -1,10 +1,9 @@
 import { tss } from "tss-react";
 
 
-const RegisterStyles = tss.create(({}) => ({
+const RegisterStyles = tss.withParams<{regIndex: number}>().create(({regIndex}) => ({
     root:{
         height: '100vh',
-        backgroundColor: "#c0c7cf"
     },
     card: {
         textAlign: 'center',
@@ -12,26 +11,22 @@ const RegisterStyles = tss.create(({}) => ({
         backfaceVisibility: 'hidden',
         backgroundColor: '#fff',
         height: '100%',
-        width: '50%',
+        width: '100%',
         borderWidth: 1,
         borderColor: process.env.REACT_APP_CLIENT_PRIMARY_COLOUR,
         borderStyle: 'solid',
         borderRadius: 8,
         padding: "3%",
         boxShadow: `0 1px 12px ${process.env.REACT_APP_CLIENT_PRIMARY_COLOUR}`,
-        "@media (max-width: 768px)": {
-            width: '70%'
-           },
+        overflow: 'hidden',
     },
     container: {
         position: 'absolute',
-        marginLeft: '10%',
+        marginLeft: '20%',
         height: '72%',
         width: '50%',
         perspective: 800,
-        "@media (max-width: 768px)": {
-            width: '70%'
-           },
+
     },
     cardImageLogo: {
         width: "15vh",
@@ -60,7 +55,9 @@ const RegisterStyles = tss.create(({}) => ({
         marginBottom: "5%"
     },
     loginNextbtn: {
-        width: "100%",
+        position: 'absolute',
+        bottom: 40,
+        width: "92%",
         justifyContent: 'center',
         display: 'flex',
         cursor: 'pointer',
@@ -98,7 +95,57 @@ const RegisterStyles = tss.create(({}) => ({
     },
     SignUpDivider: {
         marginBottom: 10
-    }
+    },
+    personalContainer: {
+        position: 'absolute',
+        width: '92%',
+        top: "29%",
+        transform: regIndex === 0 ? 'translateX(0px)' : 'translateX(500px)',
+        transition: 'transform 1500ms',
+    },
+    addressContainer: {
+        position: 'absolute',
+        width: '92%',
+        top: "29%",
+        transform: regIndex === 1 ?  'translateX(0px)' : regIndex === 2 ? 'translateX(500px)' : 'translateX(-500px)',
+        transition: 'transform 1500ms',
+    },
+    completeContainer: {
+        position: 'absolute',
+        width: '92%',
+        top: "29%",
+        transform: regIndex === 2 ? 'translateX(0px)' : 'translateX(-500px)',
+        transition: 'transform 1500ms',
+    },
+    completeSubText: {
+        fontFamily: 'Tahoma',
+        fontSize: 15,
+        textAlign: 'start'
+    },
+    completeText: {
+        fontFamily: 'Tahoma',
+        fontSize: 16,
+    },
+    verifyText: {
+        fontWeight: '800',
+        fontFamily: 'Tahoma',
+        color: process.env.REACT_APP_CLIENT_PRIMARY_COLOUR,
+        textAlign: 'center'
+    },
+    signupNextbtn: {
+        cursor: 'pointer',
+        border: 'none',
+        color: '#000',
+        padding: 10,
+        flex: 1,
+        marginBottom: "5%",
+        transition: 'transform 0.3s, box-shadow 0.3s',
+        backgroundColor: "#c0c7cf",
+        "&:Hover": {
+            transform: 'translateY(-3px)',
+            boxShadow: `0 2px 10px #c0c7cf`
+        }
+    },
 }))
 
 export default RegisterStyles;

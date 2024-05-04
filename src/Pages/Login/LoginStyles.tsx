@@ -1,33 +1,25 @@
 import { tss } from "tss-react";
 
-const loginStyles = tss.withParams<{ isForgotPasswordFlip: boolean; }>().create(({isForgotPasswordFlip}) => ({
+const loginStyles = tss.withParams<{ isForgotPasswordFlip: boolean; RegisterState: boolean;}>().create(({isForgotPasswordFlip, RegisterState}) => ({
     root: {
       height: '100vh',
-        backgroundColor: "#c0c7cf"
+      width:"100%",
     },
     container: {
-      marginLeft: '10%',
         height: '65%',
         width: '50%',
         perspective: 800,
-        "@media (max-width: 768px)": {
-            width: '70%'
-           },
+      
     },
     card: {
         left: '50%',
         top: '10%',
         height: '100%',
-        width: '50%',
         position: 'relative',
         transition: 'transform 1500ms',
         transformStyle: 'preserve-3d' ,
         textAlign: 'center',
         transform: isForgotPasswordFlip ? 'rotateY(180deg)' : 'rotateY(0deg)' ,
-        "@media (max-width: 768px)": {
-            width: '70%'
-           },
-     
     },
     cardFront: {
         textAlign: 'center',
@@ -42,7 +34,6 @@ const loginStyles = tss.withParams<{ isForgotPasswordFlip: boolean; }>().create(
         borderRadius: 8,
         padding: "3%",
         boxShadow: `0 1px 12px ${process.env.REACT_APP_CLIENT_PRIMARY_COLOUR}`,
-       
     },
     cardBack: {
         transform: 'rotateY(180deg)',
@@ -77,6 +68,13 @@ const loginStyles = tss.withParams<{ isForgotPasswordFlip: boolean; }>().create(
         padding: 10,
         flex: 1,
         marginBottom: "5%"
+    },
+    usernameStyleError: {
+        cursor: 'pointer',
+        padding: 10,
+        flex: 1,
+        marginBottom: "5%",
+        border: '1px solid red'
     },
     loginNextbtn: {
         cursor: 'pointer',
@@ -121,19 +119,38 @@ const loginStyles = tss.withParams<{ isForgotPasswordFlip: boolean; }>().create(
         position: 'absolute',
         right: "5%",
     },
-    closeIcon: {
-        cursor: 'pointer',
-        position: 'absolute',
-        left: 10,
-        padding: "2%",
-        borderRadius: 8,
-        transition: 'transform 0.3s, box-shadow 0.3s',
-        backgroundColor:  process.env.REACT_APP_CLIENT_PRIMARY_COLOUR,
-        "&:Hover": {
-            transform: 'translateY(-3px)',
-            boxShadow: `0 2px 10px ${process.env.REACT_APP_CLIENT_PRIMARY_COLOUR}`
-        }
+
+    pageContainer:{
+        display: 'flex',
+        flexDirection: 'row',
+        flex: 1,
+        width: "100%",
+        height: '100vh'
+    },
+    leftPanel: {
+        flex: 1,
+      
+    },
+    rightPanel: {
+        flex: 1,
+        backgroundColor: "#c0c7cf",
+        
+    },
+    loginCardContainer: {
+        justifyContent: 'end',
+        alignContent: 'center',
+        flex: 1,
+        transform: RegisterState ? 'translateY(-1000px)' : 'translateY(0%)',
+        transition: 'transform 1500ms',
+    },
+    RegisterCardContainer: {
+      justifyContent: 'end',
+      alignContent: 'center',
+      width: "100%",
+      transform: RegisterState ? 'translateY(-95%)' :'translateY(-1500px)' ,
+      transition: 'transform 1500ms',
     }
+   
 
 }));
 

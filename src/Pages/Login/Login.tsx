@@ -1,71 +1,84 @@
-import React, { FC, useEffect, useMemo } from "react";
+import { FC } from "react";
 import { Divider } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faClose } from "@fortawesome/free-solid-svg-icons";
+import BackArrowBtnContainerComponent from "../../Components/BackArrowBtnComponent";
+import { useForm } from "react-hook-form";
+import ILoginForm from "../../FormInterfaces/ILogin";
+import VLoginForm from "../../FormValidations/VLoginForm";
+import { UseMutateFunction } from "react-query";
 
-interface LoginProps{
-    setLoginDetails: (val: any) => void;
-    loginDetails: any;
-    handleLoginMethod: () => void;
-    styles: any;
-    setIsForgotPasswordFlip: (val: any) => void;
-    isForgotPasswordFlip: any;
+
+interface LoginProps {
+  styles: any;
+  setIsForgotPasswordFlip: (val: any) => void;
+  isForgotPasswordFlip: any;
+  disableRegistration: () => void;
+  loginMutate: UseMutateFunction<any, unknown, any, unknown>
 }
 
 const Login: FC<LoginProps> = props => {
-    const{
-      setLoginDetails,
-      handleLoginMethod,
-      setIsForgotPasswordFlip,
-      loginDetails,
-      styles,
-      isForgotPasswordFlip
-    } = props;
+  const {
+    setIsForgotPasswordFlip,
+    styles,
+    isForgotPasswordFlip,
+    disableRegistration,
+    loginMutate
+  } = props;
 
-    return(
-        <>
-        <div className={styles.root}>
-          <div className={styles.container}>
-            <div className={styles.card}>
-              <div className={styles.cardFront}>
-                <div className={styles.cardImageContainer}>
-                  <img className={styles.cardImageLogo}  src={process.env.REACT_APP_CLIENT_IMAGE_ICON}></img>
-                  </div>
-                  <div className={styles.textBoxWrapper}>
-                    <input className={styles.usernameStyle} onChange={(val) => setLoginDetails({...loginDetails, Username: val.target.value})} type="email" placeholder="Username"></input>
-                    <input className={styles.usernameStyle} onChange={(val) => setLoginDetails({...loginDetails, Password: val.target.value})} type="password" placeholder="Password"></input>
-                    <button className={styles.loginNextbtn} onClick={handleLoginMethod}>Next</button>
-                    <Divider className={styles.divider}>or</Divider>
-                    <button className={styles.signupNextbtn} >Sign Up</button>
-                    <a className={styles.forgotPasswordLink} onClick={(val) => setIsForgotPasswordFlip(!isForgotPasswordFlip)}>Forgot Password ? </a>
-                  </div>
-                  <div>
-                    <text className={styles.versionText}>|version|0.001|</text>
-                  </div>
-                </div>
-                <div className={styles.cardBack}>
-                  <div onClick={(val) => setIsForgotPasswordFlip(!isForgotPasswordFlip)} className={styles.closeIcon}>
-                   <FontAwesomeIcon icon={faArrowLeft} size='1x'color={ "white"} />
-                  </div>
-                  <div className={styles.cardImageContainer}>
-                    <img className={styles.cardImageLogo}  src={process.env.REACT_APP_CLIENT_IMAGE_ICON}></img>
-                    </div>
-                    <div className={styles.textBoxWrapper}>
-                      <input className={styles.usernameStyle} type="email" placeholder="Email to send OTP"></input>
-                      <input className={styles.usernameStyle}  type="number" placeholder="OTP: "></input>
-                      <button className={styles.loginNextbtn} >Next</button>
-                      <Divider className={styles.divider}>Already have an account ?</Divider>
-                      <button className={styles.signupNextbtn} >Sign Up</button>
-                    </div>
-                    <div>
-                      <text className={styles.versionText}>|version|0.001|</text>
-                    </div>
-                </div>
+  const { register, handleSubmit, formState: {errors}, getValues} = useForm<ILoginForm>();
+
+  const onSubmit = () => {
+    loginMutate(getValues)
+  }
+
+  return (
+    <>
+      <div className={styles.root}>
+        <div className={styles.container}>
+          <div className={styles.card}>
+            <div className={styles.cardFront}>
+              <div className={styles.cardImageContainer}>
+                <img className={styles.cardImageLogo} src={process.env.REACT_APP_CLIENT_IMAGE_ICON}></img>
               </div>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className={styles.textBoxWrapper}>
+                  <input {...register("Username", VLoginForm.VLoginFormUsername)} className={ errors.Username && errors.Username.type === "required" ? styles.usernameStyleError : styles.usernameStyle} type="email" placeholder="Username"></input>
+                  <input {...register("Password", VLoginForm.VLoginFormPassword)} className={ errors.Username && errors.Username.type === "required" ? styles.usernameStyleError : styles.usernameStyle} type="password" placeholder="Password"></input>
+                  <button className={styles.loginNextbtn} type="submit" onClick={handleSubmit(onSubmit)}>Login</button>
+                  <Divider className={styles.divider}>or</Divider>
+                </div>
+              </form>
+              <div className={styles.textBoxWrapper}>
+                <button className={styles.signupNextbtn} onClick={disableRegistration} >Sign Up</button>
+                <a className={styles.forgotPasswordLink} onClick={(val) => setIsForgotPasswordFlip(!isForgotPasswordFlip)}>Forgot Password ? </a>
+              </div>
+              <div>
+                <text className={styles.versionText}>|version 0.001|</text>
+              </div>
+            </div>
+            <div className={styles.cardBack}>
+              <BackArrowBtnContainerComponent
+                IsForgotPasswordFlip={isForgotPasswordFlip}
+                handleBackActionHandler={setIsForgotPasswordFlip}
+              />
+              <div className={styles.cardImageContainer}>
+                <img className={styles.cardImageLogo} src={process.env.REACT_APP_CLIENT_IMAGE_ICON}></img>
+              </div>
+              <div className={styles.textBoxWrapper}>
+                <input className={styles.usernameStyle} type="email" placeholder="Email to send OTP"></input>
+                <input className={styles.usernameStyle} type="number" placeholder="OTP: "></input>
+                <button className={styles.loginNextbtn} >Next</button>
+                <Divider className={styles.divider}>Already have an account ?</Divider>
+                <button className={styles.signupNextbtn} >Sign Up</button>
+              </div>
+              <div>
+                <text className={styles.versionText}>|version|0.001|</text>
+              </div>
+            </div>
           </div>
         </div>
-      </>
-    )
+      </div>
+    </>
+  )
 }
 
 export default Login;
