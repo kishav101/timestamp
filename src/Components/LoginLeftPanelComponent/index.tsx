@@ -1,0 +1,2 @@
+import LoginLeftPanelComponentContainer from './LoginLeftPanelComponentContainer';
+export default LoginLeftPanelComponentContainer;

@@ -6,6 +6,7 @@ import RegisterContainer from "../../Components/RegisterComponent/RegisterContai
 import { useForm } from "react-hook-form";
 import ILoginForm from "../../FormInterfaces/ILogin";
 import { error } from "console";
+import LoginLeftPanelComponentContainer from "../../Components/LoginLeftPanelComponent";
 
 interface LoginProps{
 
@@ -36,8 +37,12 @@ const LoginContainer: FC<LoginProps> = props => {
     
     const{data, mutate: loginMutate, status, isError } = useLoginHook({});
 
-    const disableRegistration = () => {
-      dispatch({ type: 'ENABLE' });
+    const toggleRegistration = () => {
+        if(RegisterState.enabled) {
+            dispatch({ type: 'DISABLE' });
+        } else {
+            dispatch({ type: 'ENABLE' });
+        }
     };
 
     const {classes} = loginStyles({ 
@@ -49,7 +54,7 @@ const LoginContainer: FC<LoginProps> = props => {
         <>
         <div className={classes.pageContainer}>
             <div className={classes.leftPanel}>
-
+               <LoginLeftPanelComponentContainer  />
             </div>
             <div className={classes.rightPanel}>
                 <div className={classes.loginCardContainer} >
@@ -57,19 +62,16 @@ const LoginContainer: FC<LoginProps> = props => {
                         styles={classes}
                         setIsForgotPasswordFlip={setIsForgotPasswordFlip}
                         isForgotPasswordFlip={isForgotPasswordFlip}
-                        disableRegistration={disableRegistration}
+                        toggleRegistration={toggleRegistration}
                         loginMutate={loginMutate}
-                       
                      />
                 </div>
                 <div className={classes.RegisterCardContainer}>
-                  <RegisterContainer 
-                   disableRegistration={disableRegistration}
-                   />
+                    <RegisterContainer 
+                        toggleRegistration={toggleRegistration}
+                    />
                 </div>
-               
             </div>
-          
         </div>
         </>
     )

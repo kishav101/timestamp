@@ -3,7 +3,7 @@ import Register from "./Register";
 
 interface RegisterProps{
     showRegistration?: boolean;
-    disableRegistration: () => void;
+    toggleRegistration: () => void;
 }
 
 const RegistrationSteps = [
@@ -25,7 +25,7 @@ const RegisterContainer: FC<RegisterProps> = props => {
 
     const{
         showRegistration,
-        disableRegistration
+        toggleRegistration
     } = props;
 
     const[regIndex, setRegIndex] = useState<number>(0);
@@ -74,7 +74,7 @@ const RegisterContainer: FC<RegisterProps> = props => {
            setRegIndex={setRegIndex}
            handleRegistrationNextbtn={(val: string) => handleRegistrationNextbtn('forward')}
            handleRegistrationPrevbtn={(val: string) => handleRegistrationNextbtn('backwards')}
-           disableRegistration={disableRegistration}
+           toggleRegistration={toggleRegistration}
          />
         </>
     )

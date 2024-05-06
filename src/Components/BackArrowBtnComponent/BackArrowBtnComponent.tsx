@@ -15,7 +15,7 @@ const BackArrowBtnComponent: React.FC<BackArrowBtnComponentProps> = props => {
 
     return(
         <>
-          <div onClick={handleBackActionHandler} className={closeIconStyle}>
+          <div onClick={() => handleBackActionHandler(false)} className={closeIconStyle}>
             <FontAwesomeIcon icon={faArrowLeft} size='1x'color={ "white"} />
           </div>
         </>

@@ -13,7 +13,7 @@ interface RegisterProps {
     setRegIndex: (val: any) => void;
     handleRegistrationNextbtn: (val: string) => void;
     handleRegistrationPrevbtn: (val: string) => void;
-    disableRegistration: () => void;
+    toggleRegistration: () => void;
 }
 
 const Register: FC<RegisterProps> = props => {
@@ -23,7 +23,7 @@ const Register: FC<RegisterProps> = props => {
         setRegIndex,
         handleRegistrationNextbtn,
         handleRegistrationPrevbtn,
-        disableRegistration
+        toggleRegistration
     } = props;
 
     const { classes } = RegisterStyles({
@@ -88,12 +88,8 @@ const Register: FC<RegisterProps> = props => {
                        }
                        {
                         regIndex === 2 &&
-                        <button className={classes.loginNextbtn} onClick={() => handleRegistrationNextbtn('forward')} >Continue to login</button>
+                        <button className={classes.loginNextbtn} onClick={toggleRegistration} >Continue to login</button>
                        }
-                        <div>
-                            <p>Already have an account ?</p><br></br>
-                            <button className={classes.signupNextbtn} onClick={disableRegistration} >Sign Up</button>
-                        </div>
 
                         <div className={classes.bottomCardFooter}>
                             <div className={classes.bottomFooterText}>

@@ -90,6 +90,9 @@ const loginStyles = tss.withParams<{ isForgotPasswordFlip: boolean; RegisterStat
             boxShadow: `0 2px 10px ${process.env.REACT_APP_CLIENT_PRIMARY_COLOUR}`
         }
     },
+    backButton: {
+        width: '12%'
+    },
     signupNextbtn: {
         cursor: 'pointer',
         border: 'none',

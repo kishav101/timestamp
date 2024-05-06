@@ -14,7 +14,6 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
       <NavBarContainer />
-      <NavDrawerConatiner />
       <Routes>
         <Route path="/" element={<HomeContainer />} />
         <Route path="/About" element={<AboutContainer />} />

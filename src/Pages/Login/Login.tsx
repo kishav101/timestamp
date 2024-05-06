@@ -11,7 +11,7 @@ interface LoginProps {
   styles: any;
   setIsForgotPasswordFlip: (val: any) => void;
   isForgotPasswordFlip: any;
-  disableRegistration: () => void;
+  toggleRegistration: () => void;
   loginMutate: UseMutateFunction<any, unknown, any, unknown>
 }
 
@@ -20,7 +20,7 @@ const Login: FC<LoginProps> = props => {
     setIsForgotPasswordFlip,
     styles,
     isForgotPasswordFlip,
-    disableRegistration,
+    toggleRegistration,
     loginMutate
   } = props;
 
@@ -41,14 +41,14 @@ const Login: FC<LoginProps> = props => {
               </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.textBoxWrapper}>
-                  <input {...register("Username", VLoginForm.VLoginFormUsername)} className={ errors.Username && errors.Username.type === "required" ? styles.usernameStyleError : styles.usernameStyle} type="email" placeholder="Username"></input>
-                  <input {...register("Password", VLoginForm.VLoginFormPassword)} className={ errors.Username && errors.Username.type === "required" ? styles.usernameStyleError : styles.usernameStyle} type="password" placeholder="Password"></input>
+                  <input  {...register("Username", VLoginForm.VLoginFormUsername)} className={ errors.Username && errors.Username.type === "required" ? styles.usernameStyleError : styles.usernameStyle} type="email" placeholder="Username"></input>
+                  <input {...register("Password", VLoginForm.VLoginFormPassword)} className={ errors.Password && errors.Password.type === "required" ? styles.usernameStyleError : styles.usernameStyle} type="password" placeholder="Password"></input>
                   <button className={styles.loginNextbtn} type="submit" onClick={handleSubmit(onSubmit)}>Login</button>
                   <Divider className={styles.divider}>or</Divider>
                 </div>
               </form>
               <div className={styles.textBoxWrapper}>
-                <button className={styles.signupNextbtn} onClick={disableRegistration} >Sign Up</button>
+                <button className={styles.signupNextbtn} onClick={toggleRegistration} >Sign Up</button>
                 <a className={styles.forgotPasswordLink} onClick={(val) => setIsForgotPasswordFlip(!isForgotPasswordFlip)}>Forgot Password ? </a>
               </div>
               <div>
@@ -56,10 +56,12 @@ const Login: FC<LoginProps> = props => {
               </div>
             </div>
             <div className={styles.cardBack}>
-              <BackArrowBtnContainerComponent
-                IsForgotPasswordFlip={isForgotPasswordFlip}
-                handleBackActionHandler={setIsForgotPasswordFlip}
-              />
+              <div className={styles.backButton}>
+                <BackArrowBtnContainerComponent
+                  IsForgotPasswordFlip={isForgotPasswordFlip}
+                  handleBackActionHandler={setIsForgotPasswordFlip}
+                />
+              </div>
               <div className={styles.cardImageContainer}>
                 <img className={styles.cardImageLogo} src={process.env.REACT_APP_CLIENT_IMAGE_ICON}></img>
               </div>
