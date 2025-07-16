@@ -5,7 +5,6 @@ export const profileSlice = createSlice({
     initialState: {
       isLoggedIn: false,
       currentProfile: {
-        authToken: '',
         profileId: '' ,
         jwtToken: ''
       }
@@ -13,15 +12,13 @@ export const profileSlice = createSlice({
     reducers: {
       setIsUserLoggedIn: (state: any, action) => {
         state.isLoggedIn = true;
-        state.profileId = action.payload.profileId;
-        state.authToken = action.payload.authToken;
-        state.jwtToken = action.payload.jwtToken;
+        state.currentProfile.profileId = action.payload.profileId;
+        state.currentProfile.jwtToken = action.payload.jwtToken;
       },
       setIsUserLoggedOut: (state: any, action) => {
         state.isLoggedIn = false;
-        state.profileId = state.initialState.profileId;
-        state.authToken = state.initialState.authToken;
-        state.jwtToken = state.initialState.jwtToken;
+        state.currentProfile.profileId = state.initialState.profileId;
+        state.currentProfile.jwtToken = state.initialState.jwtToken;
       }
     },
   })

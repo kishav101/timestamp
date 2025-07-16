@@ -1,4 +1,4 @@
-const DEV_ENVIRONMENT = "https://localhost:7125";
+const DEV_ENVIRONMENT = "http://localhost:5139";
 const PRODUCTION_ENVIRONMENT = ""
 const CURRENT_ENVIRONMENT = "DEV"
 

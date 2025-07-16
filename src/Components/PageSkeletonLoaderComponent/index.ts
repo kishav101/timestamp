@@ -1,0 +1,2 @@
+import PageSkeletonLoaderComponentContainer from "./PageSkeletonLoaderComponentContainer";
+export default PageSkeletonLoaderComponentContainer;

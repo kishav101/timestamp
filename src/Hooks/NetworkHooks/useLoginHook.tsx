@@ -15,8 +15,8 @@ const requestFunction = async (props: any): Promise<any> => {
 }
 
 const useLoginHook = (props: any) => {
-    const { mutate, data, isError, status } = useMutation(requestFunction);
-    return { data, isError, status, mutate }; 
+    const { mutate, data, isError, status, isLoading } = useMutation(requestFunction);
+    return { data, isError, status, mutate, isLoading }; 
 }
 
 export default useLoginHook;
